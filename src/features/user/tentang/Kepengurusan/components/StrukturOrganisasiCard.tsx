@@ -12,7 +12,6 @@ interface Props {
 
 const VARIANT_STYLES: Record<Variant, {
     wrapper: string;
-    rounded: string;
     accentBar: string;
     badgeBorder: string;
     badgeText: string;
@@ -21,7 +20,6 @@ const VARIANT_STYLES: Record<Variant, {
 }> = {
     ketua: {
         wrapper: "w-full max-w-64 sm:max-w-80",
-        rounded: "rounded-none",
         accentBar: "bg-gradient-to-r from-[#ffd700] via-[#c9e265] to-[#3ea34d]",
         badgeBorder: "border-[#ffd700]",
         badgeText: "text-[#ffd700]",
@@ -30,7 +28,6 @@ const VARIANT_STYLES: Record<Variant, {
     },
     wakil: {
         wrapper: "w-full max-w-64 sm:max-w-80",
-        rounded: "rounded-none",
         accentBar: "bg-gradient-to-r from-[#3ea34d] to-[#1f5c2c]",
         badgeBorder: "border-[#7ddc8c]",
         badgeText: "text-[#7ddc8c]",
@@ -39,7 +36,6 @@ const VARIANT_STYLES: Record<Variant, {
     },
     anggota: {
         wrapper: "w-full max-w-64 sm:max-w-80",
-        rounded: "rounded-none",
         accentBar: "bg-[#2a2a2a]",
         badgeBorder: "border-[#d4af37]/50",
         badgeText: "text-[#d4af37]",
@@ -61,7 +57,7 @@ export default function StrukturOrganisasiCard({
     return (
         <div className={`${s.wrapper} mx-auto`}>
             <div
-                className={`relative ${s.rounded} overflow-hidden aspect-3/4 bg-linear-to-b from-[#3a3200] to-[#1a1a1a] shadow-[0_0_20px_rgba(255,215,0,0.08)] hover:-translate-y-1 transition duration-300 group`}
+                className={`relative overflow-hidden aspect-3/4 bg-linear-to-b from-[#3a3200] to-[#1a1a1a] shadow-[0_0_20px_rgba(255,215,0,0.08)] hover:-translate-y-1 transition duration-300 group`}
             >
                 {/* accent bar atas */}
                 <div className={`absolute top-0 left-0 right-0 h-1.5 z-20 ${s.accentBar}`} />
@@ -90,7 +86,7 @@ export default function StrukturOrganisasiCard({
                         {nama}
                     </h3>
                     <span
-                        className={`inline-block px-2 py-0.5 rounded-full border ${s.badgeBorder} ${s.badgeText} text-[9px] sm:text-[10px] tracking-[1.5px] uppercase font-medium`}
+                        className={`inline-block px-2 py-0.5 border ${s.badgeBorder} ${s.badgeText} text-[9px] sm:text-[10px] tracking-[1.5px] uppercase font-medium`}
                     >
                         {jabatan}
                     </span>
