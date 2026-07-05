@@ -106,16 +106,16 @@ const DashboardAdmin = () => {
                         className="flex flex-col justify-between border border-neutral-800 bg-neutral-900 p-3 sm:p-5 hover:border-[#FACC15] transition-colors"
                     >
                         <div className="flex items-start justify-between gap-2 sm:gap-4">
-                            <div>
-                                <p className="text-neutral-500 text-[10px] sm:text-xs font-bold uppercase tracking-widest line-clamp-1">
+                            <div className="min-w-0">
+                                <p className="text-neutral-500 text-[10px] sm:text-xs font-bold uppercase tracking-wide sm:tracking-widest line-clamp-1">
                                     {item.label}
                                 </p>
-                                <p className="mt-1 sm:mt-3 text-xl sm:text-3xl font-bold text-white tabular-nums leading-none">
+                                <p className="mt-1 sm:mt-3 text-lg sm:text-3xl font-bold text-white tabular-nums leading-none truncate">
                                     {isLoading ? "..." : formatNumber(item.value)}
                                 </p>
                             </div>
-                            <div className="inline-flex shrink-0 h-8 w-8 sm:h-10 sm:w-10 items-center justify-center bg-neutral-800 text-[#FACC15]">
-                                <item.icon className="text-lg sm:text-2xl" />
+                            <div className="inline-flex shrink-0 h-7 w-7 sm:h-10 sm:w-10 items-center justify-center bg-neutral-800 text-[#FACC15]">
+                                <item.icon className="text-base sm:text-2xl" />
                             </div>
                         </div>
                         <p className="mt-3 sm:mt-4 text-[9px] sm:text-xs text-neutral-500 leading-tight line-clamp-2">
@@ -134,7 +134,7 @@ const DashboardAdmin = () => {
                 {/* Tren Anggota */}
                 <section className="border border-neutral-800 bg-neutral-900 p-3 sm:p-5">
                     <div className="flex items-center justify-between gap-3 mb-4 sm:mb-6">
-                        <div>
+                        <div className="min-w-0">
                             <h2 className="text-white text-xs sm:text-sm font-bold uppercase tracking-widest">
                                 Tren Anggota
                             </h2>
@@ -142,7 +142,7 @@ const DashboardAdmin = () => {
                                 Berdasarkan BPI dan anggota tercatat.
                             </p>
                         </div>
-                        <MdTrendingUp className="text-[#FACC15] text-xl sm:text-2xl" />
+                        <MdTrendingUp className="shrink-0 text-[#FACC15] text-xl sm:text-2xl" />
                     </div>
 
                     <div className="flex min-h-48 sm:min-h-64 items-end gap-2 sm:gap-4 overflow-x-auto pb-2">
@@ -154,7 +154,7 @@ const DashboardAdmin = () => {
                             summary.memberTrend.map((item) => (
                                 <div
                                     key={item.periode}
-                                    className="flex min-w-18 sm:min-w-24 flex-1 flex-col items-center gap-2 sm:gap-3"
+                                    className="flex min-w-16 sm:min-w-24 flex-1 flex-col items-center gap-2 sm:gap-3"
                                 >
                                     <div className="flex h-32 sm:h-44 w-full items-end border-b border-neutral-800">
                                         <div
@@ -167,11 +167,11 @@ const DashboardAdmin = () => {
                                             }}
                                         />
                                     </div>
-                                    <div className="text-center">
+                                    <div className="text-center w-full min-w-0">
                                         <p className="text-white text-xs sm:text-sm font-bold tabular-nums">
                                             {formatNumber(item.total)}
                                         </p>
-                                        <p className="text-neutral-500 text-[9px] sm:text-xs line-clamp-1">
+                                        <p className="text-neutral-500 text-[9px] sm:text-xs line-clamp-1 px-0.5">
                                             {item.periode}
                                         </p>
                                     </div>
@@ -188,7 +188,7 @@ const DashboardAdmin = () => {
                 {/* Aktivitas Terbaru */}
                 <section className="border border-neutral-800 bg-neutral-900 p-3 sm:p-5">
                     <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5">
-                        <MdArticle className="text-[#FACC15] text-xl sm:text-2xl" />
+                        <MdArticle className="shrink-0 text-[#FACC15] text-xl sm:text-2xl" />
                         <h2 className="text-white text-xs sm:text-sm font-bold uppercase tracking-widest">
                             Aktivitas
                         </h2>
@@ -203,7 +203,7 @@ const DashboardAdmin = () => {
                             (data?.recentItems ?? []).map((item) => (
                                 <div key={`${item.module}-${item.id}`} className="py-2 sm:py-3">
                                     <div className="flex items-center justify-between gap-2 sm:gap-3">
-                                        <p className="text-white text-xs sm:text-sm font-medium line-clamp-1">
+                                        <p className="min-w-0 text-white text-xs sm:text-sm font-medium line-clamp-1">
                                             {item.title}
                                         </p>
                                         <span className="shrink-0 border border-neutral-700 px-1.5 py-0.5 sm:px-2 sm:py-1 text-[8px] sm:text-[10px] uppercase tracking-widest text-neutral-400">
@@ -227,7 +227,7 @@ const DashboardAdmin = () => {
             {/* ── Kegiatan Terdekat ──────────────────────────────────── */}
             <section className="mt-4 sm:mt-6 border border-neutral-800 bg-neutral-900 p-3 sm:p-5">
                 <div className="flex items-center justify-between gap-3 mb-4 sm:mb-5">
-                    <div>
+                    <div className="min-w-0">
                         <h2 className="text-white text-xs sm:text-sm font-bold uppercase tracking-widest">
                             Kegiatan Terdekat
                         </h2>
@@ -237,7 +237,7 @@ const DashboardAdmin = () => {
                     </div>
                     <Link
                         to="/admin/kegiatan"
-                        className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#FACC15]"
+                        className="shrink-0 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#FACC15]"
                     >
                         Kelola
                     </Link>

@@ -115,7 +115,7 @@ const AdminHomeBackground = () => {
 
     return (
         <div className="w-full">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-col justify-between mb-6">
                 <div>
                     <h1 className="text-2xl font-bold text-[#ffd700] tracking-wider mb-1">
                         Home Background

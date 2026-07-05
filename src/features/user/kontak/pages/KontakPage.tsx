@@ -21,7 +21,7 @@ const KontakPage = () => {
         </RevealItem>
 
         {/* GRID LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-start">
 
           {/* KIRI: INFO + MAP */}
           <div className="lg:col-span-7 flex flex-col gap-6">

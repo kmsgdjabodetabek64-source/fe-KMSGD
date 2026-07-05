@@ -58,15 +58,15 @@ export default function FormUser() {
     };
 
     return (
-        <section className="lg:col-span-5 bg-[#20201f] border border-[#ffd700] p-8 sticky top-24 transform transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,215,0,0.15)]">
-            <h2 className="text-xl font-bold font-['Montserrat'] text-[#e5e2e1] mb-6 flex items-center gap-2">
+        <section className="lg:col-span-5 bg-[#20201f] border border-[#ffd700] p-5 sm:p-8 static lg:sticky lg:top-24 transform transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,215,0,0.15)]">
+            <h2 className="text-lg sm:text-xl font-bold font-['Montserrat'] text-[#e5e2e1] mb-4 sm:mb-6 flex items-center gap-2">
                 Kirim Pesan
             </h2>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 sm:gap-4">
 
                 {/* ── Success Banner ───────────────────────────────────────── */}
                 {status === "success" && (
-                    <div className="flex items-start gap-3 bg-emerald-950 border border-emerald-700 text-emerald-300 text-xs px-4 py-3 animate-[fadeIn_0.3s_ease-out]">
+                    <div className="flex items-start gap-3 bg-emerald-950 border border-emerald-700 text-emerald-300 text-xs px-3 sm:px-4 py-3 animate-[fadeIn_0.3s_ease-out]">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
@@ -97,7 +97,7 @@ export default function FormUser() {
                         value={form.nama}
                         onChange={handleChange}
                         disabled={status === "loading"}
-                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-3 outline-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-2.5 sm:p-3 outline-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                 </div>
 
@@ -112,7 +112,7 @@ export default function FormUser() {
                         value={form.email}
                         onChange={handleChange}
                         disabled={status === "loading"}
-                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-3 outline-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-2.5 sm:p-3 outline-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                 </div>
 
@@ -127,7 +127,7 @@ export default function FormUser() {
                         value={form.subjek}
                         onChange={handleChange}
                         disabled={status === "loading"}
-                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-3 outline-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-2.5 sm:p-3 outline-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                 </div>
 
@@ -142,14 +142,14 @@ export default function FormUser() {
                         onChange={handleChange}
                         disabled={status === "loading"}
                         rows={5}
-                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-3 outline-none resize-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-[#131313] border border-[#e5e2e1] text-[#e5e2e1] text-sm p-2.5 sm:p-3 outline-none resize-none placeholder:text-[#4d4732] transition-all duration-300 ease-out hover:border-[#d0c6ab] focus:border-[#ffd700] focus:-translate-y-1 focus:shadow-[4px_4px_0_0_#ffd700] disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                 </div>
 
                 <button
                     onClick={handleSubmit}
                     disabled={status === "loading"}
-                    className="mt-4 bg-[#ffd700] text-[#131313] font-bold text-lg py-4 px-6 flex items-center justify-center gap-2 outline-none transition-all duration-300 ease-out hover:bg-[#e9c400] hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#e5e2e1] active:translate-y-0 active:shadow-none disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                    className="mt-2 sm:mt-4 bg-[#ffd700] text-[#131313] font-bold text-base sm:text-lg py-3 sm:py-4 px-5 sm:px-6 flex items-center justify-center gap-2 outline-none transition-all duration-300 ease-out hover:bg-[#e9c400] hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#e5e2e1] active:translate-y-0 active:shadow-none disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
                 >
                     {status === "loading" ? (
                         <>

@@ -51,15 +51,14 @@ export default function StatsSection() {
     return (
         <RevealItem animation="animate-fade-in-up">
             <section className="bg-[#0e0e0e] py-12 border-y border-[#353535] font-['Montserrat']">
-                <dl className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#353535] text-center m-0">
+                <dl className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#353535] text-center m-0">
                     {stats.map(({ value, label }, i) => (
                         <RevealItem key={label} animation="animate-scale-in" delay={i * 60}>
                             <div className="py-6 md:py-0">
-                                {/* 2. Implementasi komponen AnimatedNumber pada struktur yang sudah ada */}
-                                <dd className="text-5xl md:text-6xl font-bold font-['Montserrat'] text-[#ffd700] mb-2 m-0">
+                                <dd className="text-4xl sm:text-5xl md:text-6xl font-bold font-['Montserrat'] text-[#ffd700] mb-2 m-0">
                                     <AnimatedNumber endValue={value} />
                                 </dd>
-                                <dt className="text-xs font-semibold tracking-widest text-[#d0c6ab] uppercase m-0">{label}</dt>
+                                <dt className="text-[11px] sm:text-xs font-semibold tracking-wide sm:tracking-widest text-[#d0c6ab] uppercase m-0">{label}</dt>
                             </div>
                         </RevealItem>
                     ))}

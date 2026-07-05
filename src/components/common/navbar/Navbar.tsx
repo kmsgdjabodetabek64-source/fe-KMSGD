@@ -31,6 +31,8 @@ const menuItems: NavItem[] = [
     { label: 'Kontak', path: '/kontak' },
 ];
 
+const GOLD_BORDER = 'border-b-[3px] border-[#FACC15]';
+
 export const Navbar: React.FC = () => {
     const location = useLocation();
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -42,7 +44,10 @@ export const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="w-full fixed top-0 z-50 border-b-[3px] border-[#FACC15] select-none bg-[#141414] text-white">
+        <nav
+            className={`w-full fixed top-0 z-50 select-none bg-[#141414] text-white
+            ${isMobileMenuOpen ? `lg:${GOLD_BORDER}` : GOLD_BORDER}`}
+        >
             {/* Header */}
             <div className="px-6 py-4 md:px-12 flex items-center justify-between">
                 {/* Logo */}
@@ -76,8 +81,8 @@ export const Navbar: React.FC = () => {
                     bg-[#141414] lg:bg-transparent border-t lg:border-t-0 border-[#FACC15]/20
                     px-6 py-4 lg:p-0 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8
                     font-['Montserrat'] overflow-hidden transition-all duration-300 ease-in-out
-                    ${isMobileMenuOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'}
-                    lg:max-h-none lg:opacity-100 lg:overflow-visible`}
+                    ${isMobileMenuOpen ? `max-h-125 opacity-100 ${GOLD_BORDER}` : 'max-h-0 opacity-0'}
+                    lg:max-h-none lg:opacity-100 lg:overflow-visible lg:border-b-0`}
                 >
                     {menuItems.map((item) => {
                         const isActive = item.path
