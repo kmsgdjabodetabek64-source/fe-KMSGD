@@ -12,61 +12,85 @@ export default function StrukturOrganisasiList() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        Promise.all([getPengurusInti(), getAnggotaDepartemen()])
-            .then(([inti, anggota]) => {
+        let ignore = false;
+
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const [inti, anggota] = await Promise.all([
+                    getPengurusInti(),
+                    getAnggotaDepartemen(),
+                ]);
+
+                if (ignore) return;
                 setPengurusInti(inti);
                 setAnggotaDepartemen(anggota);
-            })
-            .catch(() => {})
-            .finally(() => setLoading(false));
+            } catch {
+                // biarkan kosong
+            } finally {
+                if (!ignore) setLoading(false);
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            ignore = true;
+        };
     }, []);
 
-    const { ketua, semuaAnggotaLain } = useMemo(() => {
-        const k = pengurusInti.find((p) => p.jabatan?.toLowerCase() === "ketua umum");
-        const lain = pengurusInti.filter((p) => p.jabatan?.toLowerCase() !== "ketua umum");
+    const { pimpinan, semuaAnggotaLain } = useMemo(() => {
+        const paraPimpinan = pengurusInti.filter((p) => p.jabatan?.toLowerCase().includes("ketua"));
+        const sisaInti = pengurusInti.filter((p) => !p.jabatan?.toLowerCase().includes("ketua"));
+
         return {
-            ketua: k,
-            semuaAnggotaLain: [...lain, ...anggotaDepartemen]
+            pimpinan: paraPimpinan,
+            semuaAnggotaLain: [...sisaInti, ...anggotaDepartemen]
         };
     }, [pengurusInti, anggotaDepartemen]);
 
     const { visibleItems, showAll, hasMore, toggle } = useShowMore(semuaAnggotaLain, 6);
 
     return (
-        <section className="bg-[#131313] text-[#e5e2e1] font-['Inter'] min-h-screen py-16 md:py-20 px-4 sm:px-6 md:px-15 border-t border-[#2a2a2a]">
-            <RevealItem animation="animate-fade-in-up">
-                <h2 className="text-3xl md:text-4xl font-bold font-['Montserrat'] text-[#ffd700] mb-12 text-center">
-                    <span className="text-white">Struktur</span> Kepengurusan Aktif
-                </h2>
-            </RevealItem>
-
-            {loading && <p className="text-center text-[#ffd700]/50 py-20">Memuat...</p>}
+        <section className="bg-[#131313] text-[#e5e2e1] font-['Inter'] min-h-screen py-10 md:py-14 sm:px-6 md:px-10 border-t border-[#2a2a2a]">
+            {loading && <p className="text-center text-[#ffd700]/50 py-12">Memuat...</p>}
 
             {!loading && pengurusInti.length === 0 && anggotaDepartemen.length === 0 && (
-                <p className="text-center text-neutral-400 py-20">Belum ada data kepengurusan.</p>
+                <p className="text-center text-neutral-400 py-12">Belum ada data kepengurusan.</p>
             )}
 
             {!loading && (pengurusInti.length > 0 || anggotaDepartemen.length > 0) && (
                 <div className="max-w-6xl mx-auto">
-                    {/* Ketua */}
-                    {ketua && (
-                        <RevealItem animation="animate-scale-in" className="flex justify-center mb-10 md:mb-12">
-                            <StrukturOrganisasiCard
-                                isKetua
-                                jabatan={ketua.jabatan}
-                                nama={ketua.nama}
-                                image={ketua.image}
-                                quote={ketua.slogan}
-                            />
+
+                    {/* Baris Utama Pimpinan (Ketua Umum & Wakil Ketua Sejajar) */}
+                    {pimpinan.length > 0 && (
+                        <RevealItem animation="animate-scale-in" className="mb-8 md:mb-10">
+                            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 max-w-3xl mx-auto">
+                                {pimpinan.map((bos) => {
+                                    const isKetum = bos.jabatan?.toLowerCase() === "ketua umum";
+                                    return (
+                                        <div key={bos.id} className="w-full flex justify-center">
+                                            <StrukturOrganisasiCard
+                                                variant={isKetum ? "ketua" : "wakil"}
+                                                jabatan={bos.jabatan}
+                                                nama={bos.nama}
+                                                image={bos.image}
+                                                quote={(bos as PengurusInti & { slogan?: string }).slogan}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </RevealItem>
                     )}
 
-                    {/* Semua Anggota — grid wrapper animated as a section (may exceed 20 with ShowMore) */}
+                    {/* Semua Anggota Lain — card ukuran tetap, tersusun wrap & center */}
                     <RevealItem animation="animate-fade-in">
-                        <div className="grid grid-cols-3 gap-2.5 sm:gap-4 md:gap-6 lg:gap-8">
+                        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
                             {visibleItems.map((item) => (
                                 <StrukturOrganisasiCard
                                     key={item.id}
+                                    variant="anggota"
                                     jabatan={item.jabatan}
                                     nama={item.nama}
                                     image={item.image}
@@ -74,8 +98,9 @@ export default function StrukturOrganisasiList() {
                             ))}
                         </div>
                     </RevealItem>
+
                     {hasMore && (
-                        <div className="flex justify-center mt-12">
+                        <div className="flex justify-center mt-6 md:mt-8">
                             <ShowMoreButton showAll={showAll} onToggle={toggle} />
                         </div>
                     )}

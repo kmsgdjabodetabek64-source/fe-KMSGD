@@ -275,11 +275,10 @@ const KegiatanForm = () => {
                             value={form.departemenId}
                             onChange={handleChange}
                             disabled={!!form.organizerCustom}
-                            className={`w-full bg-neutral-900 border px-3 py-2 text-sm outline-none focus:border-yellow-700 transition-opacity ${
-                                form.organizerCustom
-                                    ? "border-neutral-800 text-neutral-600 opacity-40 cursor-not-allowed"
-                                    : "border-neutral-800 text-[#ffd700]"
-                            }`}
+                            className={`w-full bg-neutral-900 border px-3 py-2 text-sm outline-none focus:border-yellow-700 transition-opacity ${form.organizerCustom
+                                ? "border-neutral-800 text-neutral-600 opacity-40 cursor-not-allowed"
+                                : "border-neutral-800 text-[#ffd700]"
+                                }`}
                         >
                             <option value="">— Tidak ada / Umum —</option>
                             {departemenList.map((d) => (
@@ -293,9 +292,6 @@ const KegiatanForm = () => {
                     <div>
                         <label className="block text-yellow-600 text-xs font-bold tracking-widest uppercase mb-2">Contact Person</label>
                         <div className="flex">
-                            <span className="bg-neutral-800 border border-neutral-700 border-r-0 text-[#ffd700] px-3 py-2 text-sm select-none shrink-0">
-                                +62
-                            </span>
                             <input
                                 type="text"
                                 name="contactPerson"
@@ -321,11 +317,10 @@ const KegiatanForm = () => {
                         onChange={handleChange}
                         placeholder="Nama penyelenggara lain"
                         disabled={!!form.departemenId}
-                        className={`w-full bg-neutral-900 border px-3 py-2 text-sm outline-none focus:border-yellow-700 placeholder:text-neutral-700 transition-opacity ${
-                            form.departemenId
-                                ? "border-neutral-800 text-neutral-600 opacity-40 cursor-not-allowed"
-                                : "border-neutral-800 text-[#ffd700]"
-                        }`}
+                        className={`w-full bg-neutral-900 border px-3 py-2 text-sm outline-none focus:border-yellow-700 placeholder:text-neutral-700 transition-opacity ${form.departemenId
+                            ? "border-neutral-800 text-neutral-600 opacity-40 cursor-not-allowed"
+                            : "border-neutral-800 text-[#ffd700]"
+                            }`}
                     />
                     {form.departemenId && (
                         <p className="text-xs text-neutral-600 mt-1">Nonaktif karena departemen sudah dipilih</p>

@@ -1,7 +1,7 @@
 export const CONTENT_HEADER = {
   struktur: {
     judul: "Struktur",
-    judul2: "Organisasi",
+    judul2: "Organisasi Aktif",
     deskripsi: "Susunan kepengurusan aktif Keluarga Mahasiswa Sunan Gunung Djati Jabodetabek periode saat ini.",
   },
   departemen: {
