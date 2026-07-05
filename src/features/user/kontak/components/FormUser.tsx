@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import axiosPublic from "@/lib/axiosPublic";
+import axios from "axios";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -47,9 +48,9 @@ export default function FormUser() {
 
             setStatus("success");
             setForm({ nama: "", email: "", subjek: "", pesan: "" });
-        } catch (err: any) {
+        } catch (err) {
             const msg =
-                err?.response?.data?.message ||
+                (axios.isAxiosError(err) && err.response?.data?.message) ||
                 "Gagal mengirim pesan. Periksa koneksi dan coba lagi.";
             setErrorMsg(msg);
             setStatus("error");
