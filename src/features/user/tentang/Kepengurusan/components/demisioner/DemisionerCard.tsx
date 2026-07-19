@@ -1,5 +1,5 @@
 import { ChevronDown, GraduationCap } from "lucide-react";
-import MemberCard from "../../components/MemberCard";
+import MemberCard from "../../../components/MemberCard";
 
 interface Member {
     jabatan: string;

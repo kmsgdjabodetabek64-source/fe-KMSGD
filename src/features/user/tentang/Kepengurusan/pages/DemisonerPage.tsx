@@ -1,7 +1,7 @@
 import Header from "../../../../../components/Header";
 import UserLayout from "../../../../../layouts/UserLayout";
 import { CONTENT_HEADER } from "../../TentangData";
-import DemisonerList from "../components/DemisonerList";
+import DemisonerList from "../components/demisioner/DemisonerList";
 
 const DemisonerPage = () => {
   return (

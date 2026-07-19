@@ -20,18 +20,17 @@ import AdminLayout from "../layouts/AdminLayout";
 import DashboardAdmin from "../features/admin/dashboard/pages/DashboardAdmin";
 import AdminKegiatan from "../features/admin/kegiatan/page/AdminKegiatan";
 import Kepengurusan from "../features/admin/kepengurusan/Kepengurusan";
-import KegiatanForm from "../features/admin/kegiatan/page/KegiatanForm";
 import PeriodePage from "../features/admin/kepengurusan/priode/PeriodePage";
 import DepartemenAdminPage from "../features/admin/kepengurusan/departemen/DepartemenPage";
 import BKAdminPage from "../features/admin/kepengurusan/bk/BKPage";
 import PengurusPage from "../features/admin/kepengurusan/pengurus/PengurusPage";
-import KegiatanEditForm from "../features/admin/kegiatan/page/KegiatanEditForm";
 import AdminPengumuman from "../features/admin/pengumuman/page/AdminPengumuman";
 import ProtectedRoute from "../components/ProtectedRoute";
 import GuestRoute from "../components/GuestRoute";
 import PengumumanForm from "@/features/admin/pengumuman/page/pengumumanForm";
 import AdminGaleri from "@/features/admin/galeri/page/AdminGaleri";
 import AdminHomeBackground from "@/features/admin/homeBackground/AdminHomeBackground";
+import KegiatanFormPage from "../features/admin/kegiatan/page/KegiatanFormPage";
 
 export const router = createBrowserRouter([
     {
@@ -79,8 +78,8 @@ export const router = createBrowserRouter([
                     { index: true, element: <DashboardAdmin /> },
                     { path: 'dashboard', element: <DashboardAdmin /> },
                     { path: 'kegiatan', element: <AdminKegiatan /> },
-                    { path: 'kegiatan/tambah', element: <KegiatanForm /> },
-                    { path: 'kegiatan/edit/:id', element: <KegiatanEditForm /> },
+                    { path: 'kegiatan/tambah', element: <KegiatanFormPage /> },
+                    { path: 'kegiatan/edit/:id', element: <KegiatanFormPage /> },
                     {
                         path: 'kepengurusan',
                         element: <Kepengurusan />,

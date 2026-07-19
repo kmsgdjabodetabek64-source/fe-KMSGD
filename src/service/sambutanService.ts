@@ -51,13 +51,11 @@ export async function getSambutan(): Promise<SambutanDisplayData | null> {
 
       // 2. Dapatkan pengurus inti pada periode aktif tersebut
       const resPengurus = await axiosPublic.get<ApiResponse<PengurusIntiData[]>>(`/kepengurusan/inti`, {
-        params: { periodeId: periodeAktif.id }
+        params: { periodeId: periodeAktif.id },
       });
 
       // 3. Cari yang jabatannya adalah Ketua Umum
-      const ketuaUmum = resPengurus.data.data.find(
-        (p) => p.jabatan.toLowerCase() === "ketua umum"
-      );
+      const ketuaUmum = resPengurus.data.data.find((p) => p.jabatan.toLowerCase() === "ketua umum");
 
       if (!ketuaUmum) return null;
 
@@ -65,12 +63,11 @@ export async function getSambutan(): Promise<SambutanDisplayData | null> {
         nama: ketuaUmum.nama,
         jabatan: ketuaUmum.jabatan,
         isi: ketuaUmum.slogan || "Tidak ada sambutan",
-        image: ketuaUmum.image
+        image: ketuaUmum.image,
       };
 
       sambutanCache = { data: result, expiresAt: now + CACHE_TTL_MS };
       return result;
-
     } catch (error) {
       console.error("Failed to fetch sambutan dari pengurus inti:", error);
       return null;

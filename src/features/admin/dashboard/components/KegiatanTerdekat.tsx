@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatDate } from "@/utils/formatters";
 
 export type UpcomingEvent = {
     id: number;
@@ -12,18 +13,11 @@ interface KegiatanTerdekatProps {
     events: UpcomingEvent[];
 }
 
-const formatDate = (value: string) =>
-    new Intl.DateTimeFormat("id-ID", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-    }).format(new Date(value));
-
 export default function KegiatanTerdekat({ isLoading, events }: KegiatanTerdekatProps) {
     return (
         <section className="mt-4 sm:mt-6 border border-neutral-800 bg-neutral-900 p-3 sm:p-5">
             <div className="flex items-center justify-between gap-3 mb-4 sm:mb-5">
-                <div>
+                <div className="min-w-0">
                     <h2 className="text-white text-xs sm:text-sm font-bold uppercase tracking-widest">
                         Kegiatan Terdekat
                     </h2>
@@ -31,7 +25,10 @@ export default function KegiatanTerdekat({ isLoading, events }: KegiatanTerdekat
                         Jadwal mendatang dalam sistem.
                     </p>
                 </div>
-                <Link to="/admin/kegiatan" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#FACC15]">
+                <Link
+                    to="/admin/kegiatan"
+                    className="shrink-0 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#FACC15]"
+                >
                     Kelola
                 </Link>
             </div>
