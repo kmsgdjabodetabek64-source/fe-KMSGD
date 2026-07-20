@@ -1,5 +1,5 @@
 import axiosAdmin from "./axiosAdmin";
-import type { PeriodeOrganisasi, CreatePeriodeDto, UpdatePeriodeDto, Departemen, CreateDepartemenDto, UpdateDepartemenDto, PengurusInti, AnggotaDepartemen, BadanKhusus, CreateBKDto, UpdateBKDto, AnggotaBK } from "../kepengurusan/kepengurusanTypes";
+import type { PeriodeOrganisasi, CreatePeriodeDto, UpdatePeriodeDto, Departemen, PengurusInti, AnggotaDepartemen, BadanKhusus, AnggotaBK } from "../kepengurusan/kepengurusanTypes";
 
 const BASE_URL = "/kepengurusan";
 
@@ -45,13 +45,17 @@ export async function getDepartemenByPeriode(periodeId: number): Promise<Departe
   return res.data.data || [];
 }
 
-export async function createDepartemen(payload: CreateDepartemenDto): Promise<Departemen> {
-  const res = await axiosAdmin.post<{ data: Departemen }>(`${BASE_URL}/departemen`, payload);
+export async function createDepartemen(payload: FormData): Promise<Departemen> {
+  const res = await axiosAdmin.post<{ data: Departemen }>(`${BASE_URL}/departemen`, payload, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data.data;
 }
 
-export async function updateDepartemen(id: number, payload: UpdateDepartemenDto): Promise<Departemen> {
-  const res = await axiosAdmin.put<{ data: Departemen }>(`${BASE_URL}/departemen/${id}`, payload);
+export async function updateDepartemen(id: number, payload: FormData): Promise<Departemen> {
+  const res = await axiosAdmin.put<{ data: Departemen }>(`${BASE_URL}/departemen/${id}`, payload, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data.data;
 }
 
@@ -109,13 +113,17 @@ export async function getBKByPeriode(periodeId: number): Promise<BadanKhusus[]> 
   return res.data.data || [];
 }
 
-export async function createBK(payload: CreateBKDto): Promise<BadanKhusus> {
-  const res = await axiosAdmin.post<{ data: BadanKhusus }>(`${BASE_URL}/bk`, payload);
+export async function createBK(payload: FormData): Promise<BadanKhusus> {
+  const res = await axiosAdmin.post<{ data: BadanKhusus }>(`${BASE_URL}/bk`, payload, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data.data;
 }
 
-export async function updateBK(id: number, payload: UpdateBKDto): Promise<BadanKhusus> {
-  const res = await axiosAdmin.put<{ data: BadanKhusus }>(`${BASE_URL}/bk/${id}`, payload);
+export async function updateBK(id: number, payload: FormData): Promise<BadanKhusus> {
+  const res = await axiosAdmin.put<{ data: BadanKhusus }>(`${BASE_URL}/bk/${id}`, payload, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data.data;
 }
 

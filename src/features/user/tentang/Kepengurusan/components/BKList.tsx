@@ -24,6 +24,7 @@ export default function BKList() {
                     return {
                         nama: bk.namaBK,
                         desc: bk.deskripsi || "",
+                        img: bk.img ?? null,
                         ketua: { nama: ketua.nama, jabatan: ketua.jabatan, image: ketua.image },
                         wakil: { nama: wakil.nama, jabatan: wakil.jabatan, image: wakil.image },
                         staff: staff.map(s => ({ nama: s.nama, jabatan: s.jabatan, image: s.image })),
@@ -31,20 +32,20 @@ export default function BKList() {
                 });
                 setBkData(mapped);
             })
-            .catch(() => {})
+            .catch(() => { })
             .finally(() => setLoading(false));
     }, []);
 
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
-    const { visibleItems, showAll, hasMore, toggle } = useShowMore(bkData, 3);
-
-    const toggleBK = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
+    const { visibleItems, showAll, hasMore, toggle } = useShowMore(bkData, 6);
 
     return (
         <>
-            {loading && <p className="text-center text-[#ffd700]/50 py-10">Memuat badan khusus...</p>}
+            {loading && (
+                <div className="flex items-center justify-center gap-3 py-16">
+                    <div className="w-5 h-5 border-2 border-[#ffd700]/40 border-t-[#ffd700] rounded-full animate-spin" />
+                    <p className="text-[#ffd700]/50 text-sm">Memuat badan khusus...</p>
+                </div>
+            )}
 
             {!loading && bkData.length === 0 && (
                 <p className="text-center text-neutral-400 py-10">Belum ada data badan khusus.</p>
@@ -53,15 +54,11 @@ export default function BKList() {
             {!loading && bkData.length > 0 && (
                 <>
                     <RevealItem animation="animate-fade-in">
-                        <section className="pt-20 pb-4 border-t border-[#2a2a2a] flex flex-col gap-4">
-                            <div className="space-y-5">
+                        <section className="pt-16 pb-4 border-t border-[#2a2a2a]">
+                            {/* Grid 2 kolom — identik dengan DepartemenList */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
                                 {visibleItems.map((bk, index) => (
-                                    <BKCard
-                                        key={index}
-                                        bk={bk}
-                                        isOpen={openIndex === index}
-                                        onToggle={() => toggleBK(index)}
-                                    />
+                                    <BKCard key={index} bk={bk} />
                                 ))}
                             </div>
                         </section>

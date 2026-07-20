@@ -16,6 +16,7 @@ export function useDemisionerData() {
           const depts = d.departemen
             ? d.departemen.map((dept) => ({
                 namaDepartemen: dept.namaDepartemen,
+                img: dept.img ?? null,
                 anggota: dept.anggota
                   ? dept.anggota.map((a) => ({
                       jabatan: a.jabatan,

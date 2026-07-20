@@ -9,6 +9,7 @@ export interface Member {
 export interface Department {
     nama: string;
     desc: string;
+    img?: string | null;
     ketua: Member;
     wakil: Member;
     staff: Member[];

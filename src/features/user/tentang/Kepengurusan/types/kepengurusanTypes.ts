@@ -28,6 +28,7 @@ export interface Departemen {
   periodeId: number;
   namaDepartemen: string;
   deskripsi?: string | null;
+  img?: string | null;
   anggota: AnggotaDepartemen[];
 }
 
@@ -44,6 +45,7 @@ export interface BadanKhusus {
   periodeId: number;
   namaBK: string;
   deskripsi?: string | null;
+  img?: string | null;
   anggota: AnggotaBK[];
 }
 

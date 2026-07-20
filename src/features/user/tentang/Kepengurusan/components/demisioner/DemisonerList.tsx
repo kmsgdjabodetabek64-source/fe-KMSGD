@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDemisionerData } from "@/hooks/useDemisionerData";
 import { PeriodeDropdown } from "./PeriodeDropdown";
 import { DemisionerBpiSection } from "./DemisionerBpiSection";
@@ -7,17 +6,17 @@ import RevealItem from "@/components/RevealItem";
 
 export default function DemisionerList() {
     const { demisionerData, selectedPeriode, setSelectedPeriode, loading, error } = useDemisionerData();
-    const [openIndex, setOpenIndex] = useState<string | null>(null);
-
-    const toggleOpen = (id: string) => {
-        setOpenIndex(openIndex === id ? null : id);
-    };
 
     const group = demisionerData.find((d) => d.periode === selectedPeriode);
 
     return (
         <>
-            {loading && <p className="text-center text-[#ffd700]/50 py-10">Memuat demisioner...</p>}
+            {loading && (
+                <div className="flex items-center justify-center gap-3 py-16">
+                    <div className="w-5 h-5 border-2 border-[#ffd700]/40 border-t-[#ffd700] rounded-full animate-spin" />
+                    <p className="text-[#ffd700]/50 text-sm">Memuat demisioner...</p>
+                </div>
+            )}
             {error && <p className="text-center text-red-400 py-10">{error}</p>}
 
             {!loading && !error && demisionerData.length === 0 && (
@@ -36,12 +35,7 @@ export default function DemisionerList() {
                         {group && (
                             <div className="mb-8">
                                 <DemisionerBpiSection pengurusInti={group.pengurusInti} />
-                                <DepartemenSection
-                                    periode={group.periode}
-                                    departemen={group.departemen}
-                                    openIndex={openIndex}
-                                    onToggle={toggleOpen}
-                                />
+                                <DepartemenSection departemen={group.departemen} />
                             </div>
                         )}
                     </section>
