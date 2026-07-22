@@ -5,7 +5,6 @@ export interface Column<T> {
     header: string;
     headerClassName?: string;
     cellClassName?: string;
-    // Fungsi render memberikan kontrol penuh untuk isi cell di halaman konsumen
     render: (item: T, globalIndex: number) => React.ReactNode;
 }
 
@@ -18,6 +17,9 @@ interface GenericTableProps<T> {
     emptyMessage?: string;
     loadingMessage?: string;
     rowKey: (item: T) => string | number; // Menjamin performa rekonsiliasi DOM React
+    // ── Opsional: baris tambahan yang bisa di-expand/collapse (mis. sub-tabel anggota)
+    isExpanded?: (item: T) => boolean;
+    renderExpanded?: (item: T) => React.ReactNode;
 }
 
 // Komponen Row yang di-memoize untuk menghindari re-render yang tidak perlu
@@ -54,6 +56,8 @@ const TableAdmin = <T,>({
     emptyMessage = "Tidak ada data ditemukan.",
     loadingMessage = "Memuat data...",
     rowKey,
+    isExpanded,
+    renderExpanded,
 }: GenericTableProps<T>) => {
     return (
         <div className="overflow-x-auto w-full">
@@ -87,13 +91,22 @@ const TableAdmin = <T,>({
                     ) : (
                         data.map((item, index) => {
                             const globalIndex = (page - 1) * perPage + index + 1;
+                            const expanded = isExpanded?.(item) ?? false;
                             return (
-                                <TableRow
-                                    key={rowKey(item)}
-                                    item={item}
-                                    columns={columns}
-                                    globalIndex={globalIndex}
-                                />
+                                <React.Fragment key={rowKey(item)}>
+                                    <TableRow
+                                        item={item}
+                                        columns={columns}
+                                        globalIndex={globalIndex}
+                                    />
+                                    {expanded && renderExpanded && (
+                                        <tr className="bg-[#0d0d0d] border-b border-[#2a2a2a]">
+                                            <td colSpan={columns.length} className="p-0">
+                                                {renderExpanded(item)}
+                                            </td>
+                                        </tr>
+                                    )}
+                                </React.Fragment>
                             );
                         })
                     )}
